@@ -1,5 +1,18 @@
 ---
+const pageTitle = "关于我";
 
+const personInfo = {
+  name: "Newcode Wen",
+  age: 25,
+  sex: "male",
+  email: "newcode.wen@gmail.com",
+  phone: "13800000000",
+  address: "中国 北京",
+  job: "全栈",
+  skills: ["HTML", "CSS", "JavaScript", "React", "Vue", "Node.js", "Astro"],
+};
+
+const finished = false;
 ---
 
 <html lang="en">
@@ -8,14 +21,37 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
     <a href="/">首页</a>
     <a href="/about/">关于</a>
     <a href="/blog/">博客</a>
-    <h1>关于我</h1>
+    <h1>{pageTitle}</h1>
+    <h3>
+      我正在构建我的个人网站，这个是使用 Astro 构建的，后续计划采用 React +
+      shad/ui 进行快速构建
+    </h3>
     <p>我是一个前端开发人员，喜欢打篮球、徒步、电影，无不良嗜好</p>
     <p>这个是我的个人博客，记录学习也记录生活</p>
+    <p>以下是我个人的一些信息</p>
+    <ul>
+      <li>姓名：{personInfo.name}</li>
+      <li>年龄：{personInfo.age}</li>
+      <li>性别：{personInfo.sex}</li>
+      <li>邮箱：{personInfo.email}</li>
+      <li>手机号：{personInfo.phone}</li>
+      <li>地址：{personInfo.address}</li>
+      <li>工作：{personInfo.job}</li>
+      <li>技能：{personInfo.skills.join("、")}</li>
+    </ul>
+
+    {
+      finished ? (
+        <p>我通过 Astro 教程完成了博客的编写</p>
+      ) : (
+        <p>我正在学习 Astro 的教程构建我的博客</p>
+      )
+    }
   </body>
 </html>
