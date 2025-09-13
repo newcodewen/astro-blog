@@ -1,5 +1,8 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
 const pageTitle = "关于我";
 
 const personInfo = {
@@ -41,9 +44,7 @@ const textCase = "uppercase";
     </style>
   </head>
   <body>
-    <a href="/">首页</a>
-    <a href="/about/">关于</a>
-    <a href="/blog/">博客</a>
+    <Header />
     <h1>{pageTitle}</h1>
     <h3>
       我正在构建我的个人网站，这个是使用 Astro 构建的，后续计划采用 React +
@@ -74,5 +75,6 @@ const textCase = "uppercase";
         <p>我正在学习 Astro 的教程构建我的博客</p>
       )
     }
+    <Footer />
   </body>
 </html>

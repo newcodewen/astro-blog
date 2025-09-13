@@ -69,3 +69,37 @@ const titleColor = 'purple'
 
 在 `src/pages/posts` 目录下创建一个 `.md` 文件, 然后 Astro 会根据文档名创建对于的页面路由
 
+
+## 组件
+
+组件创建在 `src/components` 目录下
+
+### 组件的创建
+
+
+
+函数组件的创建，需要在 `src/components` 目录下创建一个 `.astro` 文件， 文件名就是组件的名称
+
+可以通过 `Astro.props` 来获取组件的 props
+
+同时在组件中通过 style 标签来添加样式
+
+```astro
+---
+const { title } = Astro.props;
+---
+
+<h1>{title}</h1>
+
+<style>
+  h1 {
+    color: var(--titleColor);
+  }
+</style>
+```
+
+## 脚本
+
+Astro 脚本的添加，需要在 `src/scripts` 目录下创建一个 `.js` 文件，文件名就是脚本的名称
+
+然后可以在组件中通过 `import` 来引入脚本， 来实现客户端的交互
