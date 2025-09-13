@@ -33,9 +33,37 @@ title: 'hello astro'
   <body>
     <h1>hello astro</h1>
   </body>
+</html>ß
+```
+需要注意的是 astro 的 fontmatter 脚本只包含 js 代码，不包含 ts
+
+astro 的语法类似 JSX
+
+### 添加样式 
+
+在 style tag 中，通过 `define:vars={{variableName1, variableName2}}` 来引用 frontmatter 中的变量
+
+```astro
+---
+const titleColor = 'purple'
+---
+
+<html>
+  <head>
+    <title>hello astro</title>
+    <style define:vars={{titleColor}}>
+      h1 {
+        color: var(--titleColor);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hello astro</h1>
+  </body>
 </html>
 ```
-需要注意的是 ast 的 fontmatter 脚本只包含 js 代码，不包含 ts
+
+全局样式，通过 `src/styles/global.css` 来添加全局样式
 
 ## 发表博客文章
 

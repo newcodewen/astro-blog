@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 const pageTitle = "关于我";
 
 const personInfo = {
@@ -13,6 +14,10 @@ const personInfo = {
 };
 
 const finished = false;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -22,6 +27,18 @@ const finished = false;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
   </head>
   <body>
     <a href="/">首页</a>
@@ -43,7 +60,11 @@ const finished = false;
       <li>手机号：{personInfo.phone}</li>
       <li>地址：{personInfo.address}</li>
       <li>工作：{personInfo.job}</li>
-      <li>技能：{personInfo.skills.join("、")}</li>
+    </ul>
+
+    <h3>我的技能</h3>
+    <ul>
+      {personInfo.skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
 
     {
