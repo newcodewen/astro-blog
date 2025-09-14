@@ -1,22 +1,20 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPost from "../components/BlogPost.astro";
+const pageTitle = "我的 astro 博客";
 
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+const allPosts = Object.values(
+  import.meta.glob("./posts/*.md", { eager: true }),
+);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Newcode Wen</title>
-  </head>
-  <body>
-    <Header />
-    <h1>我的 astro 博客</h1>
-    <p>这里我将分享我的学习之旅</p>
-    <Footer />
-  </body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <p>这里我将分享我的学习之旅</p>
+  <ul>
+    {
+      allPosts.map((post: any) => (
+        <BlogPost title={post.frontmatter.title} url={post.url} />
+      ))
+    }
+  </ul>
+</BaseLayout>

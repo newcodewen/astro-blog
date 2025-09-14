@@ -1,6 +1,7 @@
 ---
+layout: ../../layouts/MarkdownPostLayout.astro
 title: 'uv 学习'
-pubData: 2025-09-11
+pubDate: 2025-09-11
 description: 'uv 入门学习'
 author: 'newcode wen'
 

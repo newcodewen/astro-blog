@@ -1,7 +1,5 @@
 ---
-import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "关于我";
 
@@ -23,58 +21,47 @@ const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    <style define:vars={{ skillColor, fontWeight, textCase }}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-
-      .skill {
-        color: var(--skillColor);
-        font-weight: var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <h3>
-      我正在构建我的个人网站，这个是使用 Astro 构建的，后续计划采用 React +
-      shad/ui 进行快速构建
-    </h3>
-    <p>我是一个前端开发人员，喜欢打篮球、徒步、电影，无不良嗜好</p>
-    <p>这个是我的个人博客，记录学习也记录生活</p>
-    <p>以下是我个人的一些信息</p>
-    <ul>
-      <li>姓名：{personInfo.name}</li>
-      <li>年龄：{personInfo.age}</li>
-      <li>性别：{personInfo.sex}</li>
-      <li>邮箱：{personInfo.email}</li>
-      <li>手机号：{personInfo.phone}</li>
-      <li>地址：{personInfo.address}</li>
-      <li>工作：{personInfo.job}</li>
-    </ul>
-
-    <h3>我的技能</h3>
-    <ul>
-      {personInfo.skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
-
-    {
-      finished ? (
-        <p>我通过 Astro 教程完成了博客的编写</p>
-      ) : (
-        <p>我正在学习 Astro 的教程构建我的博客</p>
-      )
+<BaseLayout pageTitle={pageTitle}>
+  <style is:global define:vars={{ skillColor, fontWeight, textCase }}>
+    h1 {
+      color: purple;
+      font-size: 4rem;
     }
-    <Footer />
-  </body>
-</html>
+
+    .skill {
+      color: var(--skillColor);
+      font-weight: var(--fontWeight);
+      text-transform: var(--textCase);
+    }
+  </style>
+
+  <h3>
+    我正在构建我的个人网站，这个是使用 Astro 构建的，后续计划采用 React +
+    shad/ui 进行快速构建
+  </h3>
+  <p>我是一个前端开发人员，喜欢打篮球、徒步、电影，无不良嗜好</p>
+  <p>这个是我的个人博客，记录学习也记录生活</p>
+  <p>以下是我个人的一些信息</p>
+  <ul>
+    <li>姓名：{personInfo.name}</li>
+    <li>年龄：{personInfo.age}</li>
+    <li>性别：{personInfo.sex}</li>
+    <li>邮箱：{personInfo.email}</li>
+    <li>手机号：{personInfo.phone}</li>
+    <li>地址：{personInfo.address}</li>
+    <li>工作：{personInfo.job}</li>
+  </ul>
+
+  <h3>我的技能</h3>
+  <ul>
+    {personInfo.skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+
+  {
+    finished ? (
+      <p>我通过 Astro 教程完成了博客的编写</p>
+    ) : (
+      <p>我正在学习 Astro 的教程构建我的博客</p>
+    )
+  }
+</BaseLayout>

@@ -1,6 +1,7 @@
 ---
+layout: ../../layouts/MarkdownPostLayout.astro
 title: 'astro 学习'
-pubData: 2025-09-12
+pubDate: 2025-09-12
 description: 'astro 入门学习'
 author: 'newcode wen'
 
@@ -98,8 +99,18 @@ const { title } = Astro.props;
 </style>
 ```
 
+### 组件插槽
+
+Astro 的插槽通过 `slot` 标签来实现
+
 ## 脚本
 
 Astro 脚本的添加，需要在 `src/scripts` 目录下创建一个 `.js` 文件，文件名就是脚本的名称
 
 然后可以在组件中通过 `import` 来引入脚本， 来实现客户端的交互
+
+
+## Astro API
+
+- `import.meta.global()` 从项目中访问文件的数据
+- `getStaticPaths()` 批量创建多个页面
