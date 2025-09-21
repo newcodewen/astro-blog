@@ -1,0 +1,35 @@
+---
+import BlogPost from "../../components/BlogPost.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const allPosts = Object.values(
+    import.meta.glob("../posts/*.md", { eager: true }),
+  );
+  const uniqueTags = [
+    ...new Set(allPosts.flatMap((post: any) => post.frontmatter.tags)),
+  ];
+  return uniqueTags.map((tag) => ({
+    params: { tag },
+    props: {
+      posts: allPosts.filter((post: any) =>
+        post.frontmatter.tags?.includes(tag),
+      ),
+    },
+  }));
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout pageTitle={tag}>
+  <p>包含「{tag}」标签的文章</p>
+  <ul>
+    {
+      posts.map((post: any) => (
+        <BlogPost url={post.url} title={post.frontmatter.title} />
+      ))
+    }
+  </ul>
+</BaseLayout>
