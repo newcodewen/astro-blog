@@ -1,20 +1,17 @@
 ---
 import BlogPost from "../../components/BlogPost.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const allPosts = Object.values(
-    import.meta.glob("../posts/*.md", { eager: true }),
-  );
+  const allPosts = await getCollection("blog");
   const uniqueTags = [
-    ...new Set(allPosts.flatMap((post: any) => post.frontmatter.tags)),
+    ...new Set(allPosts.flatMap((post: any) => post.data.tags)),
   ];
   return uniqueTags.map((tag) => ({
     params: { tag },
     props: {
-      posts: allPosts.filter((post: any) =>
-        post.frontmatter.tags?.includes(tag),
-      ),
+      posts: allPosts.filter((post: any) => post.data.tags?.includes(tag)),
     },
   }));
 }
@@ -28,7 +25,7 @@ const { posts } = Astro.props;
   <ul>
     {
       posts.map((post: any) => (
-        <BlogPost url={post.url} title={post.frontmatter.title} />
+        <BlogPost url={`/posts/${post.id}`} title={post.data.title} />
       ))
     }
   </ul>

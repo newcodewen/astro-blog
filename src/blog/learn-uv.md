@@ -1,11 +1,14 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: 'uv 学习'
 pubDate: 2025-09-11
 description: 'uv 入门学习'
 author: 'newcode wen'
 
 tags: ['uv', 'python']
+image: {
+  url: '/images/uv.png',
+  alt: 'uv 学习'
+}
 
 ---
 

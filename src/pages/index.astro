@@ -1,11 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Greeting from "../components/Greeting";
 const pageTitle = "首页";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+	<h2>Newcode Wen 的数字花园</h2>
 	<p>
 		Hello, 大家好，我是 Newcode Wen， 大家也可以叫我牛马文，或者牛码文，
 		我希望自己写的代码很牛
 	</p>
+	<Greeting client:load messages={["你好", "你好呀", "安好"]} />
 </BaseLayout>

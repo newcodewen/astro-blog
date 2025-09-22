@@ -1,11 +1,14 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: 'astro 学习'
 pubDate: 2025-09-12
 description: 'astro 入门学习'
 author: 'newcode wen'
 
 tags: ['astro', 'blog']
+image: {
+  url: '/images/astro.png',
+  alt: 'astro 学习'
+}
 
 ---
 
@@ -155,3 +158,73 @@ Astro 通过 `@astrojs/rss` 来添加订阅源
 ```shell
 npm install @astrojs/rss
 ```
+
+### 配置
+
+通过添加 `rss.xml.js` 文件来配置订阅源
+
+```js
+import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+
+export async function GET(context) {
+  return rss({
+    title: 'Astro Learner | Blog',
+    description: 'My journey learning Astro',
+    site: context.site,
+    items: await pagesGlobToRssItems(import.meta.glob('./**/*.md')),
+    customData: `<language>en-us</language>`,
+  });
+}
+```
+
+## Astro 群岛
+
+### 添加 React 群岛
+
+```shell
+pnpm astro add react
+```
+
+然后按照提示就可以了
+
+
+### 群岛组件
+
+群岛组件其实跟对应的 UI 框架的组件是一样的， 只是需要在组件使用时添加 `client:load` 或者 `client:visible` 等**注水的组件**来指定组件的渲染时机
+
+> 注水的组件就是在页面渲染时，需要加载 JS 代码进行页面交互的组件
+
+假如我们有一个 React 组件 `Greeting`， 我们可以在 `src/components` 目录下创建一个 `Greeting.tsx` 文件， 包含部分交互的 JS 代码
+
+使用时， 注水的组件需要添加 `client:load` 或者 `client:visible` 等属性来指定组件的渲染时机， **只针对 UI 框架的组件**
+
+```astro
+<Greeting client:load messages={["你好", "你好呀", "安好"]} />
+```
+
+## Astro 内容集合（Content Collections）
+
+Astro 的内容集合是在 Astro 管理内容集的最佳方式。结构相似的数据集可以定义为一个集合，可以 Markdown 或者 数据文件（如 JSON、YAML 等）
+
+内容集合依靠 typescript 为编辑器提供 Zod 验证、智能提示和类型检查。
+
+相关的 typescript 配置如下：
+
+1. 扩展 Astro 的 `strict` 配置如下
+
+```JSON
+{
+  "extends": "astro/tsconfigs/strict",
+}
+
+2. 或者添加 `strictNullChecks` 配置如下
+
+```JSON
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+  }
+}
+```
+
+
