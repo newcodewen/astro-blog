@@ -39,3 +39,15 @@ val res = when (score) {
     else -> "D"
 }
 ```
+
+`when`  多条件和范围语法判断
+
+```kotlin
+val score = 2
+val res = when (score) {
+    1, 2 -> "A"
+    3, 4 -> "B"
+    in 5..10 -> "C"
+    else -> "D"
+}
+```
