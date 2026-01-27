@@ -1,0 +1,77 @@
+---
+title: Jupyter Kotlin 使用
+pubDate: 2026-01-21T15:20:50.830Z
+fmContentType: blog
+---
+
+
+# Jupyter Kotlin 使用
+
+## 安装
+
+### 通过 Jetbrains IDEA
+
+这是最快捷的办法，不过只能通过 Idea 来使用， 步骤如下：
+
+1. 安装 Jetbrains IDEA
+2. 安装 Kotlin 插件
+3. 新建一个 Kotlin 项目
+4. 配置 Jupyter 内核
+5. 启动 Jupyter 内核
+6. 在 Jupyter 中使用 Kotlin
+
+> 有个好处就是，在编写 Jetbrains 插件时，可以通过使用 Idea 编辑器自身内核结合 nootbook 快速实现一些插件接口及写法
+
+### 通过 Conda 或 Pip 安装内核（推荐）
+
+由于网络原因，Conda 的 Jetbrains 源经常连接失败。推荐优先使用 `pip` 配合国内镜像源进行安装。
+
+> **注意**：在 macOS 上直接运行 `pip` 可能会遇到 `externally-managed-environment` 错误。这是 macOS 为了保护系统 Python 环境而设置的限制。
+> 请使用 `--break-system-packages` 参数（如果了解风险）或者使用虚拟环境。
+
+#### 方式一：使用 Pip 安装（推荐，速度快）
+
+使用清华大学镜像源进行安装：
+
+```bash
+# 推荐：如果你在 Conda 环境中，请先激活环境再运行
+pip install kotlin-jupyter-kernel -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 如果遇到 externally-managed-environment 错误，且确定只是为了个人使用，可以添加参数：
+pip install kotlin-jupyter-kernel -i https://pypi.tuna.tsinghua.edu.cn/simple --break-system-packages
+```
+
+#### 方式二：使用 Conda 安装
+
+如果你的网络环境允许访问国外源，可以使用 Conda：
+
+```bash
+conda install -c jetbrains kotlin-jupyter-kernel
+```
+
+#### 修复与更新
+
+安装完成后，或者更新版本后，**必须**运行以下命令修复内核位置：
+
+```bash
+python -m kotlin_kernel fix-kernelspec-location
+```
+
+## 使用
+
+
+### 通过 Jupyter note
+
+直接通过 Jupyter note 来使用 Kotlin 内核， 步骤如下：
+
+1. 启动 Jupyter note
+2. 新建一个 Kotlin 内核的 notebook
+3. 在 notebook 中编写 Kotlin 代码
+4. 运行代码
+
+
+
+
+## 参考文档
+
+- https://github.com/Kotlin/kotlin-jupyter
