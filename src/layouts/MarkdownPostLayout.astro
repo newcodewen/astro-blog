@@ -7,6 +7,11 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('zh-CN', 
   month: 'long',
   day: 'numeric'
 });
+
+// 估算阅读时间（基于描述长度 + 固定值）
+const descriptionLength = frontmatter.description?.length || 0;
+const wordCount = descriptionLength + 800; // 假设平均文章约 800 字
+const readingTime = Math.max(1, Math.ceil(wordCount / 300));
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
@@ -31,6 +36,14 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('zh-CN', 
             <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
           <time datetime={frontmatter.pubDate}>{formattedDate}</time>
+        </span>
+
+        <span class="post-meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          {readingTime} 分钟阅读
         </span>
       </div>
 
@@ -72,20 +85,25 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('zh-CN', 
 <style>
   .post-header {
     margin-bottom: var(--space-10);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .post-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: var(--space-4);
-    letter-spacing: -0.03em;
+    font-size: clamp(1.875rem, 5vw, 2.75rem);
+    margin-bottom: var(--space-5);
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--color-text);
   }
 
   .post-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-6);
-    margin-bottom: var(--space-4);
-    font-size: 0.9375rem;
+    gap: var(--space-5);
+    margin-bottom: var(--space-5);
+    font-size: 0.875rem;
     color: var(--color-text-muted);
   }
 
@@ -95,26 +113,33 @@ const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('zh-CN', 
     gap: var(--space-2);
   }
 
+  .post-meta-item svg {
+    opacity: 0.7;
+  }
+
   .post-description {
     font-size: 1.125rem;
+    line-height: 1.7;
     color: var(--color-text-secondary);
-    font-style: italic;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-5);
+    font-weight: 400;
   }
 
   .post-featured-image {
     width: 100%;
-    max-height: 400px;
+    max-height: 420px;
     object-fit: cover;
     border-radius: var(--radius-xl);
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-10);
+    box-shadow: var(--shadow-lg);
   }
 
   .post-content {
     max-width: 70ch;
+    line-height: 1.75;
   }
 
   .tags {
-    margin-top: var(--space-4);
+    margin-top: var(--space-5);
   }
 </style>

@@ -471,28 +471,42 @@ article {
 }
 
 article h1 {
-  font-size: 2.5rem;
-  margin-bottom: var(--space-4);
-  letter-spacing: -0.03em;
+  font-size: clamp(1.875rem, 5vw, 2.75rem);
+  margin-bottom: var(--space-5);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  font-weight: 700;
 }
 
 article h2 {
-  font-size: 1.75rem;
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
   margin-top: var(--space-12);
   margin-bottom: var(--space-4);
-  padding-bottom: var(--space-2);
+  padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 article h3 {
-  font-size: 1.375rem;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+article h4 {
+  font-size: 1.125rem;
   margin-top: var(--space-8);
   margin-bottom: var(--space-3);
+  font-weight: 600;
 }
 
 article p {
   margin-bottom: var(--space-5);
-  line-height: 1.8;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
 }
 
 article ul, article ol {
@@ -502,50 +516,136 @@ article ul, article ol {
 
 article li {
   margin-bottom: var(--space-2);
+  line-height: 1.7;
   color: var(--color-text-secondary);
 }
 
+article li::marker {
+  color: var(--color-primary-500);
+}
+
+/* 内联代码样式 */
 article code {
   font-family: var(--font-mono);
   font-size: 0.875em;
-  padding: var(--space-1) var(--space-2);
+  padding: 0.2em 0.4em;
   background-color: var(--color-gray-100);
   border-radius: var(--radius-sm);
   color: var(--color-primary-700);
+  font-weight: 500;
 }
 
 html.dark article code {
-  background-color: var(--color-gray-800);
+  background-color: rgba(99, 102, 241, 0.15);
   color: var(--color-primary-300);
 }
 
+/* 代码块样式 - 使用更深的背景色提升对比度 */
 article pre {
-  background-color: var(--color-gray-900);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
+  background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
   overflow-x: auto;
-  margin-bottom: var(--space-6);
+  margin: var(--space-6) 0 var(--space-8);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+html.dark article pre {
+  background: linear-gradient(145deg, #020617 0%, #0f172a 100%);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 article pre code {
   background-color: transparent;
-  color: var(--color-gray-100);
+  color: #e2e8f0;
   padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
+/* 引用块样式 */
 article blockquote {
-  border-left: 4px solid var(--color-primary-500);
-  padding-left: var(--space-5);
-  margin: var(--space-6) 0;
+  position: relative;
+  border-left: 3px solid var(--color-primary-500);
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-8) 0;
+  background-color: var(--color-gray-50);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
   font-style: italic;
+}
+
+html.dark article blockquote {
+  background-color: rgba(99, 102, 241, 0.08);
+}
+
+article blockquote p {
+  margin-bottom: 0;
   color: var(--color-text-secondary);
 }
 
+article blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 图片样式 */
 article img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  margin: var(--space-8) 0;
+  box-shadow: var(--shadow-md);
+}
+
+/* 表格样式 */
+article table {
+  width: 100%;
+  border-collapse: collapse;
   margin: var(--space-6) 0;
+  font-size: 0.9375rem;
+}
+
+article th,
+article td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+article th {
+  font-weight: 600;
+  color: var(--color-text);
+  background-color: var(--color-gray-50);
+}
+
+html.dark article th {
+  background-color: var(--color-gray-800);
+}
+
+article tr:hover {
+  background-color: var(--color-gray-50);
+}
+
+html.dark article tr:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+/* 水平分割线 */
+article hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
+  margin: var(--space-10) 0;
+}
+
+/* 强调文本 */
+article strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+article em {
+  font-style: italic;
 }
 
 /* 文章头部元信息 */
@@ -558,7 +658,7 @@ article img {
 .post-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-5);
   align-items: center;
   font-size: 0.875rem;
   color: var(--color-text-muted);
@@ -568,6 +668,16 @@ article img {
   display: flex;
   align-items: center;
   gap: var(--space-2);
+}
+
+.post-meta-item svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* 文章标签优化 */
+.post-header .tags {
+  margin-top: var(--space-5);
 }
 
 /* ========================================
@@ -616,7 +726,7 @@ article img {
    响应式
    ======================================== */
 
-@media (max-width: 636px) {
+@media (max-width: 768px) {
   .hamburger {
     display: block;
     order: -1;
@@ -653,8 +763,55 @@ article img {
     font-size: 1.5rem;
   }
 
+  article {
+    padding: 0 var(--space-4);
+  }
+
   article h1 {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  article h2 {
+    font-size: 1.375rem;
+    margin-top: var(--space-10);
+  }
+
+  article h3 {
+    font-size: 1.125rem;
+    margin-top: var(--space-8);
+  }
+
+  article p {
+    line-height: 1.7;
+  }
+
+  article pre {
+    padding: var(--space-4);
+    margin-left: calc(-1 * var(--space-4));
+    margin-right: calc(-1 * var(--space-4));
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  article pre code {
+    font-size: 0.85rem;
+  }
+
+  article blockquote {
+    padding: var(--space-3) var(--space-4);
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  article img {
+    border-radius: var(--radius-lg);
+    margin-left: calc(-1 * var(--space-4));
+    margin-right: calc(-1 * var(--space-4));
+    width: calc(100% + var(--space-8));
+    max-width: none;
+    border-radius: 0;
   }
 
   .hero {
@@ -667,6 +824,24 @@ article img {
 
   .post-card {
     padding: var(--space-5);
+  }
+}
+
+@media (max-width: 480px) {
+  article h1 {
+    font-size: 1.625rem;
+  }
+
+  article h2 {
+    font-size: 1.25rem;
+  }
+
+  article p {
+    font-size: 1rem;
+  }
+
+  .post-card {
+    padding: var(--space-4);
   }
 }
 
