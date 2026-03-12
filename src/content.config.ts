@@ -1,21 +1,22 @@
-// 导入 glob 加载器（loader）
-import { glob } from "astro/loaders";
-// 从 `astro:content` 导入工具函数
-import { z, defineCollection } from "astro:content";
-// 为每个集合定义一个 `loader` 和 `schema`
+import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
+
 const blog = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.md', base: "./src/blog" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
+    id: z.number(),
+    slug: z.string(),
     title: z.string(),
-    pubDate: z.date(),
     description: z.string(),
-    author: z.string(),
-    image: z.object({
-      url: z.string(),
-      alt: z.string()
-    }).optional(),
-    tags: z.array(z.string()).optional().default([])
+    imageUrl: z.string().optional(),
+    imageAlt: z.string().optional(),
+    pubDate: z.string(),
+    author: z.string().default('shadcn Studio'),
+    avatarUrl: z.string().optional(),
+    category: z.string().default('General'),
+    readTime: z.number().optional(),
+    featured: z.boolean().default(false)
   })
-});
-// 导出一个单独的 `collections` 对象用以注册你的集合（们）
-export const collections = { blog };
+})
+
+export const collections = { blog }
