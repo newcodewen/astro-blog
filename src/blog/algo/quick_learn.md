@@ -1,11 +1,12 @@
 ---
-title: 数据结构学习方法
-description: 学习数据结构的方
-tags:
-    - algorithmic
-keywords:
-    - 算法
-    - 数据结构
+title: "数据结构学习方法"
+pubDate: 2026-03-10
+description: "学习数据结构的方法：打乱知识点、刻意练习、反馈和调整"
+author: "Newcode Wen"
+image:
+  url: "https://docs.astro.build/assets/rose.webp"
+  alt: "数据结构学习方法"
+tags: ["算法", "数据结构", "学习方法"]
 ---
 
 

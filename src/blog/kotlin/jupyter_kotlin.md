@@ -1,7 +1,9 @@
 ---
-title: Jupyter Kotlin 使用
-pubDate: 2026-01-21T15:20:50.830Z
-fmContentType: blog
+title: "Jupyter Kotlin 使用"
+pubDate: 2026-01-21
+description: "在 Jupyter Notebook 中使用 Kotlin 的完整指南，包括安装配置和最佳实践"
+author: "Newcode Wen"
+tags: ["Kotlin", "Jupyter", "Notebook"]
 ---
 
 

@@ -2,16 +2,15 @@
 import Social from "./Social.astro";
 ---
 
-<style>
-  footer {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-</style>
-
 <footer>
-  <Social platform="github" username="newcodewen" />
-  <Social platform="twitter" username="newcodewen" />
-  <Social platform="linkedin" username="newcodewen" />
+  <div class="footer-content">
+    <div class="social-links">
+      <Social platform="github" username="newcodewen" />
+      <Social platform="twitter" username="newcodewen" />
+      <Social platform="linkedin" username="newcodewen" />
+    </div>
+    <p class="copyright">
+      © {new Date().getFullYear()} Newcode Wen. 用 ❤️ 和 Astro 构建。
+    </p>
+  </div>
 </footer>

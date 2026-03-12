@@ -1,3 +1,14 @@
+---
+title: "算法复杂度"
+pubDate: 2026-03-11
+description: "算法复杂度基础：大 O 表示法、时间复杂度分析及常见复杂度等级"
+author: "Newcode Wen"
+image:
+  url: "https://docs.astro.build/assets/rose.webp"
+  alt: "算法复杂度"
+tags: ["算法", "复杂度", "大O表示法"]
+---
+
 # 算法复杂度
 
 ## 大 O 表示法
@@ -18,18 +29,3 @@
 - O(n^3)：立方
 - O(2^n)：指数
 - O(log n)：对数
-- O(n!)：阶乘
-
-
-## 时间复杂度
-
-## 空间复杂度
-
-## 如何从 LeetCode 学习算法
-
-1. 遇到一个题目，先切题，想到任何解法
-2. 针对所能想到的解法，分析其时间复杂度和空间复杂度，选择最优算法ß
-
-## 参考文档
-
-- https://zh.wikipedia.org/wiki/%E4%B8%BB%E5%AE%9A%E7%90%86

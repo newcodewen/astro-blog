@@ -1,44 +1,120 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
+
+const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <p>作者：{frontmatter.author} 发布于{frontmatter.pubDate.toLocaleDateString()}</p>
-  <p><em>{frontmatter.description}</em></p>
-  {
-    frontmatter.image?.url && (
-      <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
-    )
-  }
+  <article>
+    <header class="post-header">
+      <h1>{frontmatter.title}</h1>
 
-  <div class="tags">
+      <div class="post-meta">
+        <span class="post-meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          {frontmatter.author}
+        </span>
+
+        <span class="post-meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <time datetime={frontmatter.pubDate}>{formattedDate}</time>
+        </span>
+      </div>
+
+      {frontmatter.description && (
+        <p class="post-description">{frontmatter.description}</p>
+      )}
+
+      {
+        frontmatter.tags && frontmatter.tags.length > 0 && (
+          <div class="tags">
+            {
+              frontmatter.tags.map((tag: string) => (
+                <span class="tag">
+                  <a href={`/tags/${tag}`}>{tag}</a>
+                </span>
+              ))
+            }
+          </div>
+        )
+      }
+    </header>
+
     {
-      frontmatter.tags.map((tag: string) => (
-        <p class="tag">
-          <a href={`/tags/${tag}`}>{tag}</a>
-        </p>
-      ))
+      frontmatter.image?.url && (
+        <img
+          src={frontmatter.image.url}
+          alt={frontmatter.image.alt}
+          class="post-featured-image"
+        />
+      )
     }
-  </div>
-  <slot />
+
+    <div class="post-content">
+      <slot />
+    </div>
+  </article>
 </BaseLayout>
 
 <style>
-  a {
-    color: #00539f;
-    text-decoration: none;
+  .post-header {
+    margin-bottom: var(--space-10);
   }
-  .tags {
+
+  .post-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.03em;
+  }
+
+  .post-meta {
     display: flex;
     flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-4);
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
   }
-  .tag {
-    margin-right: 0.25em;
-    border:dotted 1px #a1a1a1
-    border-radius: 0.5em;
-    padding: 0.5em 1em;
-    font-size: 1.15em;
-    background-color: #f8fcfd;
+
+  .post-meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .post-description {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-bottom: var(--space-4);
+  }
+
+  .post-featured-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .post-content {
+    max-width: 70ch;
+  }
+
+  .tags {
+    margin-top: var(--space-4);
   }
 </style>

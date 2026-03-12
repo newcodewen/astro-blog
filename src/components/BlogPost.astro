@@ -1,5 +1,46 @@
 ---
-const { title, url } = Astro.props;
+const { title, url, description, pubDate, tags } = Astro.props;
+const formattedDate = pubDate
+  ? new Date(pubDate).toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : null;
 ---
 
-<li><a href={url}>{title}</a></li>
+<li class="post-list-item">
+  <article class="post-card">
+    <div class="post-card-content">
+      {formattedDate && (
+        <time class="meta" datetime={pubDate}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          {formattedDate}
+        </time>
+      )}
+
+      <h3>
+        <a href={url}>{title}</a>
+      </h3>
+
+      {description && (
+        <p class="description">{description}</p>
+      )}
+
+      {tags && tags.length > 0 && (
+        <div class="tags">
+          {tags.map((tag: string) => (
+            <span class="tag">
+              <a href={`/tags/${tag}`}>{tag}</a>
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </article>
+</li>
