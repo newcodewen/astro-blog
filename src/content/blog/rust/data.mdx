@@ -1,0 +1,88 @@
+
+
+## 变量
+
+```rust
+let x = 10;
+
+let mut y = 20;
+y += 10;
+```
+
+> 单词 mut 是 mutable 的缩写， 表示可变的。
+
+## 常量
+
+```rust
+const PI: f32 = 3.1415926;
+```
+
+**常量不能被更改，编译后放入可执行文件的数据段， 全局可访问**
+
+
+## 静态变量
+
+```rust
+static mut COUNT: u32 = 0;
+```
+
+**静态变量可以被更改，编译后放入可执行文件的数据段， 全局可访问**
+
+
+
+## 数据结构
+
+
+### 结构体
+
+### 普通结构体
+
+```rust
+struct Point {
+    x: i32,
+    y: i32,
+}
+```
+
+每个域（field）都有一个名称， 可以通过名称访问。
+
+
+#### 元组结构体
+
+struct 的特殊形式，它的域是匿名的，可以通过索引访问，适用于简单的结构体。
+
+```rust
+struct Pointer(i32, i32);
+
+let p = Pointer(10, 20);
+println!("{:?}", p);
+
+// 访问元组结构体的域
+println!("x = {}", p.0);
+println!("y = {}", p.1);
+```
+
+
+
+### enum
+
+
+用于枚举
+```rust
+enum Gender {
+    Unspecified = 0,
+    Male = 1,
+    Female = 2,
+}
+```
+
+标签联合体
+
+```rust
+enum Option<T> {
+    Some(T),
+    None,
+}
+```
+
+

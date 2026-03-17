@@ -1,0 +1,31 @@
+---
+id: 12
+slug: 'learn-rust'
+title: 'Rust 学习'
+description: 'Rust 入门学习'
+imageUrl: '/images/blog-post/post-6.webp'
+imageAlt: 'Rust 学习'
+pubDate: '2026 年 3 月 13 日'
+category: 'Technology'
+author: 'newcode wen'
+avatarUrl: '/images/avatars/1.webp'
+readTime: 3
+featured: false
+---
+
+
+1. 变量默认不可变，最小权限原则。 如果需要修改变量的值，需要在变量名前添加 `mut` 关键字。
+2. 除了 let、static、const、fn 等少数语句，绝大多数都是表达式， 表达式会返回一个值，函数的最后一个表达式就是函数的返回值。
+3. 支持面向接口编程和泛型编程。
+4. 控制流程，如模式匹配、循环、分支等。
+
+
+变量类型一般可以省略， 但是 const 和 static 变量必须指定类型。
+
+函数为一等公民， 可以作为参数传递、 赋值给变量、 作为返回值等。
+
+### 函数
+
+1. 参数和返回值类型必须制定，没有返回值可以省略，返回 Unit 类型。
+2. 内部使用 return 提前返回，否则返回函数最后一个表达式的值。
+3. 最后一个表达式末尾添加分号表示不返回值， 否则返回该表达式的值。
