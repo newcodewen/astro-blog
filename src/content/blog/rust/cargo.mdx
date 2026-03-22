@@ -1,0 +1,52 @@
+
+
+
+          
+# Rust 项目添加依赖笔记
+
+## 一、添加依赖的两种方法
+
+### 方法一：使用 `cargo add` 命令（推荐）
+- **基本用法**：`cargo add <依赖包名>`
+  - 示例：`cargo add reqwest`
+- **指定版本**：`cargo add <依赖包名> --version <版本号>`
+  - 示例：`cargo add reqwest --version 0.11.24`
+- **添加可选特性**：`cargo add <依赖包名> --features <特性>`
+  - 示例：`cargo add reqwest --features json`
+
+### 方法二：手动编辑 `Cargo.toml` 文件
+- **基本格式**：
+  ```toml
+  [dependencies]
+  依赖包名 = "版本号"
+  ```
+- **添加可选特性**：
+  ```toml
+  [dependencies]
+  reqwest = { version = "0.11.24", features = ["json", "blocking"] }
+  ```
+
+## 二、版本指定规则
+- **`^` 前缀**（默认）：兼容更新（如 `^1.0.0` 允许 `1.x.x` 的更新）
+- **`~` 前缀**：补丁更新（如 `~1.0.0` 允许 `1.0.x` 的更新）
+- **精确版本**：固定版本号（如 `1.0.0`）
+
+## 三、其他常用命令
+- **查看依赖树**：`cargo tree`
+- **更新所有依赖**：`cargo update`
+- **更新单个依赖**：`cargo update -p <依赖包名>`
+
+## 四、示例
+为 `httpie` 项目添加 HTTP 客户端功能：
+```bash
+cargo add reqwest --features json
+```
+
+执行后，`Cargo.toml` 会自动更新为：
+```toml
+[dependencies]
+reqwest = { version = "0.11.24", features = ["json"] }
+```
+
+**提示**：添加依赖后，Cargo 会自动生成 `Cargo.lock` 文件，锁定依赖版本以确保构建一致性。
+        
