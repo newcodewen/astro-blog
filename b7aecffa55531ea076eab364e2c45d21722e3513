@@ -1,0 +1,65 @@
+src/assets/svg/logo.tsx
+  64ea63ac31d8848a 5,11,14,16-27,29-35
+src/content/blog/rust/data.mdx
+  64ea63ac31d8848a 1-14
+src/styles/global.css
+  64ea63ac31d8848a 8,10-41,43-49,53-83,129-136
+src/components/layout/footer.tsx
+  64ea63ac31d8848a 1,7-15,18-24,26-31,33,35-37,39,41-42
+src/components/blocks/cta-section/cta-section.tsx
+  64ea63ac31d8848a 8-17,20-21,23-24,26-30
+src/content/blog/md-vs-mdx-guide.mdx
+  64ea63ac31d8848a 251-252,258-259,265,267
+design-system/MASTER.md
+  64ea63ac31d8848a 1-107
+src/components/blocks/hero-section/hero-section.tsx
+  64ea63ac31d8848a 4,12-13,15,17,19-20,22-23,27-29,32-35,39,44-52,61-63,65-67,69-71,75,77-78,80,85
+src/content/blog/rust/cargo.mdx
+  64ea63ac31d8848a 1-14
+  51e4786a102eff18 45-72,77
+src/components/layout/header.tsx
+  64ea63ac31d8848a 4,80,82,84,92,94-95,102,104,111,113-114,117,119-120,123-127,133-137
+src/layouts/Layout.astro
+  64ea63ac31d8848a 18,22-23,26-27
+src/content/blog/rust/arco.mdx
+  64ea63ac31d8848a 1-15,17-18
+src/content/blog/rust/base.mdx
+  64ea63ac31d8848a 8
+src/content/blog/rust/protobuf.mdx
+  64ea63ac31d8848a 2-13
+src/components/blocks/blog-component/blog-component.tsx
+  64ea63ac31d8848a 48,58-60,64,68-76,84,86-89,91-93,95-96,124-125,128,143-144,147-148,152-153,155-156,162,171-172,175-176,181,186
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "b7aecffa55531ea076eab364e2c45d21722e3513",
+  "prompts": {
+    "51e4786a102eff18": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8d708a5d-7976-4d67-a37c-37b02595f7ab",
+        "model": "MiniMax-M2.7"
+      },
+      "human_author": "newcodewen",
+      "messages": [],
+      "total_additions": 29,
+      "total_deletions": 2,
+      "accepted_lines": 29,
+      "overriden_lines": 0
+    },
+    "64ea63ac31d8848a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "28efc089-8607-4914-b64f-377eb89ba986",
+        "model": "MiniMax-M2.7"
+      },
+      "human_author": "newcodewen",
+      "messages": [],
+      "total_additions": 509,
+      "total_deletions": 436,
+      "accepted_lines": 435,
+      "overriden_lines": 0
+    }
+  }
+}
