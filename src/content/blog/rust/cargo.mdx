@@ -1,7 +1,18 @@
+---
+id: 17
+slug: 'rust-cargo'
+title: 'Rust 项目添加依赖笔记'
+description: 'Cargo 添加依赖的常用命令和版本规则'
+imageUrl: '/images/blog-post/post-6.webp'
+imageAlt: 'Rust Cargo'
+pubDate: '2026-03-13'
+category: 'Technology'
+author: 'newcode wen'
+avatarUrl: '/images/avatars/1.webp'
+readTime: 5
+featured: false
+---
 
-
-
-          
 # Rust 项目添加依赖笔记
 
 ## 一、添加依赖的两种方法
@@ -31,12 +42,39 @@
 - **`~` 前缀**：补丁更新（如 `~1.0.0` 允许 `1.0.x` 的更新）
 - **精确版本**：固定版本号（如 `1.0.0`）
 
-## 三、其他常用命令
+## 三、更新依赖
+
+### 查看依赖状态
+- **查看可更新的依赖**：`cargo outdated`
+  - 需要先安装：`cargo install cargo-outdated`
+- **查看依赖树**：`cargo tree`
+  - 逆序显示：`cargo tree -i <包名>`（查看谁依赖了某个包）
+
+### 更新所有依赖
+- **更新所有依赖到最新兼容版本**：`cargo update`
+  - 执行后会更新 `Cargo.lock` 文件
+  - 遵循 `Cargo.toml` 中的版本约束
+
+### 更新单个依赖
+- **更新指定包到最新版本**：`cargo update -p <依赖包名>`
+  - 示例：`cargo update -p reqwest`
+- **更新到特定版本**：
+  ```bash
+  cargo update -p serde --precise 1.0.210
+  ```
+
+### 锁定文件管理
+- **`Cargo.lock` 文件**：
+  - 记录所有依赖的具体版本
+  - 提交到版本控制系统确保构建一致性
+- **更新锁定文件**：当 `Cargo.toml` 修改后，运行 `cargo update` 更新 `Cargo.lock`
+
+## 四、其他常用命令
 - **查看依赖树**：`cargo tree`
 - **更新所有依赖**：`cargo update`
 - **更新单个依赖**：`cargo update -p <依赖包名>`
 
-## 四、示例
+## 五、示例
 为 `httpie` 项目添加 HTTP 客户端功能：
 ```bash
 cargo add reqwest --features json
@@ -49,4 +87,3 @@ reqwest = { version = "0.11.24", features = ["json"] }
 ```
 
 **提示**：添加依赖后，Cargo 会自动生成 `Cargo.lock` 文件，锁定依赖版本以确保构建一致性。
-        

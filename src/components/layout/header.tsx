@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { MailIcon, MenuIcon } from 'lucide-react'
+import { MenuIcon } from 'lucide-react'
 
 import ThemeToggle from '@/components/layout/theme-toggle'
 
@@ -40,7 +40,6 @@ const Header = ({ navigationData, className }: HeaderProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Only handle scroll-based active section on the home page
       const path = window.location.pathname
 
       if (path !== '/') {
@@ -58,16 +57,12 @@ const Header = ({ navigationData, className }: HeaderProps) => {
           if (element.id !== activeSection) {
             setActiveSection(element.id)
           }
-
           break
         }
       }
     }
 
-    // Initial check
     handleScroll()
-
-    // Listen for scroll events
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
@@ -76,18 +71,17 @@ const Header = ({ navigationData, className }: HeaderProps) => {
   }, [activeSection])
 
   useLayoutEffect(() => {
-    // Update activeSection based on the current route using window.location.pathname
     const path = window.location.pathname
 
     setTimeout(() => {
       if (path === '/' || path === '/#home') {
         setActiveSection('home')
       } else if (path.startsWith('/blog/')) {
-        setActiveSection('') // Don't show any active state on blog post pages
+        setActiveSection('')
       } else if (path.startsWith('/contact')) {
-        setActiveSection('') // Don't show any active state on contact page
+        setActiveSection('')
       } else {
-        setActiveSection('') // Default case for other routes
+        setActiveSection('')
       }
     }, 0)
   }, [])
@@ -95,58 +89,52 @@ const Header = ({ navigationData, className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        'bg-background sticky top-0 z-50 h-16 w-full transition-all duration-300',
+        'bg-background/80 backdrop-blur-md sticky top-0 z-50 h-16 w-full border-b transition-all duration-200',
         {
-          'shadow-sm': isScrolled
+          'border-border': isScrolled,
+          'border-transparent': !isScrolled
         },
         className
       )}
     >
       <div className='mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8'>
         {/* Logo */}
-        <a href='/#home' className='flex items-center gap-3'>
+        <a href='/#home' className='flex items-center gap-2'>
           <LogoSvg />
-          <span className='text-primary text-[20px] font-semibold'>INK</span>
+          <span className='text-foreground text-lg font-semibold tracking-tight'>DevBlog</span>
         </a>
 
         {/* Navigation */}
         <MenuNavigation navigationData={navigationData} activeSection={activeSection} className='max-lg:hidden' />
 
         {/* Actions */}
-        <div className='flex gap-3'>
+        <div className='flex items-center gap-2'>
           <ThemeToggle />
-          <Button variant='outline' className='max-sm:hidden' asChild>
-            <a href='/contact-us'>Get in Touch</a>
-          </Button>
 
-          {/* Navigation for small screens */}
-          <div className='flex gap-3'>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant='outline' size='icon' className='sm:hidden' asChild>
-                    <a href='/contact-us'>
-                      <MailIcon />
-                      <span className='sr-only'>Get in Touch</span>
-                    </a>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Get in Touch</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
-            <MenuDropdown
-              align='end'
-              navigationData={navigationData}
-              activeSection={activeSection}
-              trigger={
-                <Button variant='outline' size='icon' className='lg:hidden'>
-                  <MenuIcon />
-                  <span className='sr-only'>Menu</span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant='ghost' size='icon' className='lg:hidden' asChild>
+                  <a href='/contact-us'>
+                    <MenuIcon />
+                    <span className='sr-only'>Menu</span>
+                  </a>
                 </Button>
-              }
-            />
-          </div>
+              </TooltipTrigger>
+              <TooltipContent>Menu</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <MenuDropdown
+            align='end'
+            navigationData={navigationData}
+            activeSection={activeSection}
+            trigger={
+              <Button variant='outline' size='sm' className='hidden lg:flex'>
+                Contact
+              </Button>
+            }
+          />
         </div>
       </div>
     </header>

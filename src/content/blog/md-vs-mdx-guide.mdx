@@ -248,29 +248,23 @@ import { DocsLayout } from '@/components/DocsLayout'
 
 ### 3. 交互式组件示例
 
+```jsx
+// React 组件示例
+function App() {
+  return <h1>Hello React</h1>
+}
+```
+
+```vue
+<!-- Vue 组件示例 -->
+<template>
+  <h1>Hello Vue</h1>
+</template>
+```
+
+在 MDX 中可以直接使用交互式组件：
+
 ```mdx
-import { Tabs, Tab } from '@/components/Tabs'
-import { Counter } from '@/components/Counter'
-
-<Tabs>
-  <Tab label="React">
-    ```jsx
-    function App() {
-      return <h1>Hello React</h1>
-    }
-    ```
-  </Tab>
-  <Tab label="Vue">
-    ```vue
-    <template>
-      <h1>Hello Vue</h1>
-    </template>
-    ```
-  </Tab>
-</Tabs>
-
-## 交互式计数器
-
 <Counter initial={0} />
 ```
 
