@@ -7,27 +7,6 @@ import HeadSeo from '@/layouts/HeadSeo.astro'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 
-import type { NavigationSection } from '@/components/blocks/menu-navigation'
-
-const navigationData: NavigationSection[] = [
-  {
-    title: 'Home',
-    href: '/#home'
-  },
-  {
-    title: 'Articles',
-    href: '/#categories'
-  },
-  {
-    title: 'About',
-    href: '/#about'
-  },
-  {
-    title: 'Contact',
-    href: '/contact-us'
-  }
-]
-
 interface Props {
   title?: string
   description?: string
@@ -46,7 +25,7 @@ const seoProps = Astro.props as Props
 ---
 
 <!doctype html>
-<html lang='en' class='scroll-smooth'>
+<html lang='zh-CN' class='scroll-smooth'>
   <head>
     <HeadSeo {...seoProps} />
     <ClientRouter />
@@ -71,15 +50,11 @@ const seoProps = Astro.props as Props
           }
         }
 
-        // Apply theme immediately on initial load
         applyTheme()
-
-        // Re-apply theme on Astro page transitions
         document.addEventListener('astro:page-load', applyTheme)
       })()
     </script>
     <style>
-      /* Disable all view transitions while keeping client-side navigation */
       ::view-transition-group(*),
       ::view-transition-old(*),
       ::view-transition-new(*) {
@@ -87,15 +62,9 @@ const seoProps = Astro.props as Props
       }
     </style>
   </head>
-  <body class='flex min-h-full w-full flex-auto flex-col'>
-    <div class='flex flex-col'>
-      {/* Header Section */}
-      <Header navigationData={navigationData} client:load />
-
-      <main class='flex flex-col *:scroll-mt-15.5'><slot /></main>
-
-      {/* Footer Section */}
-      <Footer client:load />
-    </div>
+  <body class='flex min-h-full w-full flex-col bg-background text-foreground antialiased font-sans'>
+    <Header client:load />
+    <main class='flex-1'><slot /></main>
+    <Footer />
   </body>
 </html>

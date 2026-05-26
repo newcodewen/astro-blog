@@ -1,42 +1,25 @@
-import { GithubIcon } from 'lucide-react'
-
-import { Separator } from '@/components/ui/separator'
-
 const Footer = () => {
   return (
-    <footer className='border-t border-border'>
-      <div className='mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8'>
-        <div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
-          {/* Logo & Copyright */}
-          <div className='flex items-center gap-2'>
-            <span className='text-foreground text-sm font-medium'>DevBlog</span>
-            <span className='text-muted-foreground text-sm'>
-              ©{new Date().getFullYear()} · Built with Astro
-            </span>
-          </div>
-
-          {/* Links */}
-          <div className='flex items-center gap-6'>
-            <a
-              href='https://github.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-muted-foreground hover:text-foreground transition-colors duration-200'
-            >
-              <GithubIcon className='size-5' />
-              <span className='sr-only'>GitHub</span>
-            </a>
+    <footer className='border-t border-border/50 mt-24'>
+      <div className='mx-auto max-w-4xl px-6 py-8'>
+        <div className='flex flex-col items-center justify-between gap-2 sm:flex-row'>
+          <span className='text-muted-foreground/60 text-xs'>
+            ©{new Date().getFullYear()} newcode wen
+          </span>
+          <div className='flex items-center gap-4'>
             <a
               href='/rss.xml'
-              className='text-muted-foreground hover:text-foreground text-sm transition-colors duration-200'
+              className='text-muted-foreground/60 hover:text-foreground text-xs transition-colors'
             >
               RSS
             </a>
             <a
-              href='#'
-              className='text-muted-foreground hover:text-foreground text-sm transition-colors duration-200'
+              href='https://github.com/newcodewen'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-muted-foreground/60 hover:text-foreground text-xs transition-colors'
             >
-              Privacy
+              GitHub
             </a>
           </div>
         </div>
