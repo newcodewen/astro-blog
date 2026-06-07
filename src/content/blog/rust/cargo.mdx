@@ -15,6 +15,17 @@ featured: false
 
 # Rust 项目添加依赖笔记
 
+## 命令
+
+### new 
+
+- **创建新项目**：`cargo new <项目名>`
+  - 示例：`cargo new my_project`
+  - 会创建一个包含 `Cargo.toml` 文件的目录，用于管理项目依赖和配置。
+
+`cargo new my_project --vcs none` 会创建一个不使用版本控制系统的项目， 不会生成 `.gitignore` 文件。
+
+
 ## 一、添加依赖的两种方法
 
 ### 方法一：使用 `cargo add` 命令（推荐）
