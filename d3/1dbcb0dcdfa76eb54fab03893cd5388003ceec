@@ -1,0 +1,18 @@
+src/content/blog/rust/base.mdx
+  h_221829b67bd4c6 32
+src/content/blog/rust/cargo.mdx
+  h_221829b67bd4c6 18-28
+src/content/blog/rust/std.mdx
+  h_221829b67bd4c6 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "d31dbcb0dcdfa76eb54fab03893cd5388003ceec",
+  "prompts": {},
+  "humans": {
+    "h_221829b67bd4c6": {
+      "author": "newcodewen <1243011165@qq.com>"
+    }
+  }
+}
